@@ -9,21 +9,17 @@ body {
     
     }
 
-    h3 {
-        text-align: left;
-        padding-left: 20px;
-    }
-
     h4 {
-        text-align: left;
-        padding-left: 20px;
         line-height: 2;
     }
 
     p {
-        text-align: left;
-        padding-left: 20px;
         line-height: 0.7;
+    }
+
+    h3, h4, p {
+                text-align: left;
+                padding-left: 20px;
     }
 
 }
