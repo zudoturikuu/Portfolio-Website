@@ -4,13 +4,6 @@
     box-sizing: border-box;
 }*/
 
-a {
-    color: blueviolet;
-}
-
-a:hover {
-    color: red;
-}
 
 footer {
     margin-top: 2rem;
@@ -33,3 +26,32 @@ h2{
     color: #075aab;
 }
 
+
+
+.links a :link {
+        color: blue;
+        text-decoration: none;
+    }
+
+.links a :visited {
+        color: purple;
+    }
+
+.links a :hover {
+        color: aqua;
+        text-decoration: underline;
+    }
+.links a :active {
+        color: red;
+    }
+
+.links a :visited :hover {
+    color: orange;
+}
+
+.links a :visited :active {
+    color: red;
+}
+
+
+    
