@@ -60,7 +60,8 @@ body {
 }
 
 #google-drive-icon,
-#goodreads-icon {
+#goodreads-icon,
+#linkedin-icon {
     width: 30px;
     height: 30px;
     display: flex;
