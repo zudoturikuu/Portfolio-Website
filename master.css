@@ -43,6 +43,15 @@ body {
 
 .content h1 {
     padding-bottom: 10px;
+    background: linear-gradient(to right, #ffffff, #cfcfcf, #8a8a8a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.content p {
+    color: #FEFEFE;
+    font-size: 1.2em;
+    padding-bottom: 10px;
 }
 
 .bi-arrow-down-circle {
@@ -64,7 +73,7 @@ body {
 }
 
 #main-content.animate {
-    animation: appear 2s linear;
+    animation: appear 1s linear;
 }
 
 .link-bar ul {
