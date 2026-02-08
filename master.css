@@ -45,6 +45,7 @@ body {
     padding-bottom: 10px;
     background: linear-gradient(to right, #ffffff, #cfcfcf, #8a8a8a);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 
     font-family: "Russo One", sans-serif;
