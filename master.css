@@ -46,12 +46,20 @@ body {
     background: linear-gradient(to right, #ffffff, #cfcfcf, #8a8a8a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    font-family: "Russo One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .content p {
     color: #FEFEFE;
-    font-size: 1.2em;
+    font-size: 1.0em;
     padding-bottom: 10px;
+
+    font-family: "Russo One", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
 .bi-arrow-down-circle {
