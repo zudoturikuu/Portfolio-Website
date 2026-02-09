@@ -97,18 +97,36 @@ footer {
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+    background-color: black;
 }
 .pill-button {
     display: flex;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 30px;
     width: 150px;
     height: 50px;
     justify-content: center;
     align-items: center;
     gap: 5px;
+    color: white;
+    margin-top: 30px;
+}
+.pill-button:link {
+    text-decoration: none;
+    color: white;
 }
 
+.pill-button:hover {
+    color: #70ABFF;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.pill-button:active {
+    color: #70ABFF;
+    background-color: white;
+    transition: 0.3s;
+}
 .link-bar ul {
     display: flex;
     flex-direction: row;
@@ -127,6 +145,7 @@ footer {
     display: block;
     width: 25px;
     height: 25px;
+    color: white;
 }
 
 #google-drive-icon,
@@ -138,6 +157,21 @@ footer {
     position: relative;
     bottom: 4px;
     margin-left: 1px;
+    color: white;
+}
+
+#linkedin-icon {
+    background-color: white;
+}
+
+.link-bar svg:hover {
+    color: #70ABFF !important;
+    transition: 0.3s;
+}
+
+#linkedin-icon:hover {
+    background-color: #70ABFF;
+    transition: 0.3s;
 }
 
 footer code {
@@ -145,6 +179,8 @@ display: flex;
 justify-content: center;
 padding: 10px 0px 10px 0px;
 padding-top: 20px;
+color: white;
+font-size: 0.75em;
 }
 
 
