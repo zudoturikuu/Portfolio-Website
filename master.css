@@ -98,18 +98,23 @@ footer {
     align-items: center;
     margin-top: 10px;
     background-color: black;
+    height: 350px;
 }
 .pill-button {
     display: flex;
     border: 1px solid white;
     border-radius: 30px;
-    width: 150px;
-    height: 50px;
+    width: 300px;
+    height: 55px;
     justify-content: center;
     align-items: center;
     gap: 5px;
     color: white;
     margin-top: 30px;
+}
+
+.pill-button span {
+    font-size: 1.2em;
 }
 .pill-button:link {
     text-decoration: none;
@@ -143,23 +148,25 @@ footer {
 
 .link-bar svg {
     display: block;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     color: white;
 }
 
 #google-drive-icon,
 #goodreads-icon,
 #linkedin-icon {
-    width: 33px;
-    height: 33px;
+    width: 43px;
+    height: 43px;
     display: flex;
     position: relative;
     bottom: 4px;
     margin-left: 1px;
     color: white;
 }
-
+.bi-github {
+    margin-right: 5px;
+}
 #linkedin-icon {
     background-color: white;
 }
@@ -180,7 +187,12 @@ justify-content: center;
 padding: 10px 0px 10px 0px;
 padding-top: 20px;
 color: white;
-font-size: 0.75em;
+font-size: 0.9em;
+}
+
+footer h1 {
+    color: white;
+    font-size: 2.3em;
 }
 
 
