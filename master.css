@@ -10,6 +10,13 @@ html {
 
 body {
     font-size: 18px;
+    font-family: "Roboto Serif", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100,
+        "GRAD" 0;
 }
 
 .main {
@@ -89,6 +96,16 @@ body {
 .hc-diploma:link {
     color: blue;
     text-decoration: none;
+}
+
+.work-experience h5 {
+    font-weight: 200;
+    font-style: italic;
+}
+
+.education h5 {
+    font-weight: 200;
+    font-style: italic;
 }
 
 footer {
