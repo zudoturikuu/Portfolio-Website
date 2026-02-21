@@ -179,9 +179,21 @@ footer {
     margin-left: 1px;
     color: white;
 }
+
+#coursera-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    position: relative;
+    margin-left: 1px;
+    background-color: white;
+    color: white;
+    margin-top: -3px;
+}
 .bi-github {
     margin-right: 5px;
 }
+
 #linkedin-icon {
     background-color: white;
 }
@@ -191,7 +203,8 @@ footer {
     transition: 0.3s;
 }
 
-#linkedin-icon:hover {
+#linkedin-icon:hover,
+#coursera-icon:hover {
     background-color: #70ABFF;
     transition: 0.3s;
 }
