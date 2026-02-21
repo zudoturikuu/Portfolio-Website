@@ -98,12 +98,9 @@ body {
     text-decoration: none;
 }
 
-.work-experience h5 {
-    font-weight: 200;
-    font-style: italic;
-}
-
-.education h5 {
+.work-experience h5,
+.education h5,
+.extracurriculars h5 {
     font-weight: 200;
     font-style: italic;
 }
