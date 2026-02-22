@@ -196,7 +196,12 @@
             const button = document.getElementById("scroll-button");
             const mainContent = document.getElementById("main-content");
 
-            button.addEventListener("click", () => {
+            button.addEventListener("click", (e) => {
+                e.preventDefault();
+                mainContent.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
                 mainContent.classList.remove("animate");
                 void mainContent.offsetWidth; // force reflow
                 mainContent.classList.add("animate");
