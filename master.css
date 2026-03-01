@@ -38,7 +38,15 @@ body {
 
 .welcome-page {
     position: relative;
+}
 
+hr {
+    width: 70px;
+    height: 10px;
+    border-radius: 20px;
+    background: linear-gradient(to right, #833AB4, #FD1D1D, #FCB045);
+    border: none;
+    margin-top: 20px;
 }
 
 .content {
@@ -104,6 +112,7 @@ body {
 .awards-and-honors h5 {
     font-weight: 200;
     font-style: italic;
+    padding: 5px 0px 10px 0px;
 }
 
 .education-content ul,
