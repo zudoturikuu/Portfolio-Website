@@ -106,6 +106,31 @@ body {
     font-style: italic;
 }
 
+.education-content ul,
+.extracurricular-content ul,
+.work-experience-content ul,
+.projects-content ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.education-content li,
+.extracurricular-content li,
+.work-experience-content li,
+.projects-content li {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    flex-wrap: wrap;
+    width: 300px;
+    height: 300px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
 .award-with-badge {
     display: flex;
     align-items: center;
