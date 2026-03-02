@@ -285,4 +285,11 @@ footer h1 {
     font-size: 2.3em;
 }
 
-/* Colour palette for website: #272757 #8686AC #505081 #0F0E47 */
+@media only screen and (max-width: 401px) {
+    body,
+    footer {
+        width: 50%;
+        margin: 0 auto;
+    }
+}
+/* Colour palette for website: #6A89A7 #BDDDFC #88BDF2 #384959 */
