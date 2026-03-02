@@ -14,9 +14,11 @@ body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+    color: #f5f5ff;
     font-variation-settings:
         "wdth" 100,
         "GRAD" 0;
+    background-color: #272757;
 }
 
 .main {
@@ -44,7 +46,7 @@ hr {
     width: 70px;
     height: 10px;
     border-radius: 20px;
-    background: linear-gradient(to right, #833AB4, #FD1D1D, #FCB045);
+    background: linear-gradient(to right, #8686AC, #505081, #0F0E47);
     border: none;
     margin-top: 20px;
 }
@@ -134,11 +136,15 @@ hr {
     flex-wrap: wrap;
     width: 300px;
     height: 300px;
+    position: relative;
     align-items: center;
     justify-content: center;
     border-radius: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
+    margin-top: 10px;
+    background-color: #8686AC;
+    padding: 10px 20px 10px 30px;
 }
 .award-with-badge {
     display: flex;
@@ -267,3 +273,4 @@ footer h1 {
     font-size: 2.3em;
 }
 
+/* Colour palette for website: #272757 #8686AC #505081 #0F0E47 */
