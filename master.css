@@ -104,7 +104,6 @@ hr {
 }
 
 .hc-diploma:link {
-    color: blue;
     text-decoration: none;
 }
 
@@ -153,6 +152,12 @@ hr {
         0 0 60px rgba(80, 80, 129, 0.15),    
         0 10px 40px rgba(0, 0, 0, 0.4); 
 }
+
+.education-content a,
+.projects-content a {
+    color: #BDDDFC;
+}
+
 .award-with-badge {
     display: flex;
     align-items: center;
