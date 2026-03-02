@@ -44,9 +44,9 @@ body {
 
 hr {
     width: 70px;
-    height: 10px;
+    height: 5px;
     border-radius: 20px;
-    background: linear-gradient(to right, #8686AC, #505081, #0F0E47);
+    background: linear-gradient(to right, #0F0E47, #505081, #8686AC); 
     border: none;
     margin-top: 20px;
 }
@@ -140,6 +140,7 @@ hr {
     align-items: center;
     justify-content: center;
     align-content: center;
+    text-align: center;
     border-radius: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
