@@ -99,6 +99,44 @@ hr {
     }
 }
 
+.header {
+    position: fixed;
+    display: flex;
+    
+    width: 960px;
+    height: 180px;
+    width: 100%;
+    padding: 50px;
+    background: white;
+}
+.dropdown {
+    display: flex;
+    list-style: none;
+    position: relative;
+    right: 20px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    min-width: 160px;
+    padding: 10px;
+    list-style: none;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+.dropdown-menu li {
+  padding: 8px 12px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
 #main-content.animate {
     animation: appear 1s linear;
 }

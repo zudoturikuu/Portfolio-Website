@@ -17,6 +17,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu" />
     </head>
 
     <body>
@@ -25,11 +26,27 @@
             <div class="content">
                 <h1>Wong Jun Heng</h1>
                 <p>Welcome to my portfolio!</p>
-                <a href="#main-content" id="scroll-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+                <a href="#dropdown" id="scroll-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
                 </svg></a>
             </div>
         </section>
+
+        <div class="header">
+            <nav>
+                <li class="dropdown" id="dropdown">
+                    <span class="material-symbols-outlined"> menu </span>
+                        <ul class="dropdown-menu">
+                        <li><a href="#main-content">About Me</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#extracurriculars">Extracurriculars</a></li>
+                        <li><a href="#work-experience">Work Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#awards-and-honors">Awards and Honors</a></li>
+                    </ul>
+                </li>
+            </nav>
+        </div>
 
         <div class="main" id ="main-content">
             <hr/>
@@ -44,7 +61,7 @@
             </section>
             <!--Link to Resume with an About me Button after this. Find a place somewhere-->
             
-            <hr/>
+            <hr/ id="education">
 
             <section class="education">
                 <h1>Education</h1>
@@ -72,7 +89,7 @@
                 </section>
             </section>
 
-            <hr/>
+            <hr/ id="extracurriculars">
 
             <section class="extracurriculars">
                 <h1>Extracurricular Activities</h1>
@@ -112,7 +129,7 @@
                 </section>
             </section>
 
-            <hr/>
+            <hr/ id="work-experience">
 
             <section class="work-experience">
                 <h1>Work Experience</h1>
@@ -120,8 +137,8 @@
                     <h3>Singapore Police Force</h3>
                     <h5>February 2026 - February 2028</h5>
                     <ul>
-                        <li>Awarded <strong>Best Trainee</strong> and <strong>Best in Professional Studies</strong> during the Police Officer Basic Course</li>
-                        <li>Posted to the <strong>Protective Security Command</strong> as a ProCom Trooper, and the <strong>85th batch of Officer Cadet Trainees</strong></li>
+                        <li><p>Awarded <strong>Best Trainee</strong> and <strong>Best in Professional Studies</strong> during the Police Officer Basic Course</p></li>
+                        <li><p>Posted to the <strong>Protective Security Command</strong> as a ProCom Trooper, and the <strong>85th batch of Officer Cadet Trainees</strong></p></li>
                     </ul>
                     <h3>Singapore Land Authority</h3>
                     <h5>December 2025</h5>
@@ -138,7 +155,7 @@
                 </section>
             </section>
 
-            <hr/>
+            <hr/ id="projects">
 
             <section class="projects">
                 <h1>Projects</h1>
@@ -163,7 +180,7 @@
                 </section>
             </section>
 
-            <hr/>
+            <hr/ id="awards-and-honors">
 
             <section class="awards-and-honors">
                 <h1>Awards and Honors</h1>
