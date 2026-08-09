@@ -100,41 +100,59 @@ hr {
 }
 
 .header {
-    position: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
     display: flex;
-    
-    width: 960px;
-    height: 180px;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
     width: 100%;
-    padding: 50px;
-    background: white;
+    height: 80px;
+    padding: 0 50px;
+
+    color: #384959;
+    background-color: white;
 }
 .dropdown {
     display: flex;
     list-style: none;
     position: relative;
     right: 20px;
+    cursor: pointer;
+    color: #384959;
 }
 
 .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
+    right: 0;
+    left: auto;
 
-    min-width: 160px;
+    min-width: 200px;
     padding: 10px;
     list-style: none;
     background-color: white;
     border: 1px solid #ccc;
 }
 
-.dropdown-menu li {
-  padding: 8px 12px;
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+    display: block;
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
+.dropdown-menu a {
+    display: block;
+    color: #384959;
+    text-decoration: none;
+}
+
+.dropdown-menu li {
+  padding: 8px 12px;
 }
 
 #main-content.animate {
