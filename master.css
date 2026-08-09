@@ -49,6 +49,7 @@ hr {
     background: linear-gradient(to right, #6A8987, #88BDF2, #BDDDFC); 
     border: none;
     margin-top: 20px;
+    margin-bottom: 6px;
 }
 
 .content {
@@ -117,8 +118,8 @@ hr {
     height: 80px;
     padding: 0 50px;
 
-    color: #384959;
-    background-color: white;
+    pointer-events: none;
+    background-color: transparent;
 }
 .dropdown {
     display: flex;
@@ -126,7 +127,8 @@ hr {
     position: relative;
     right: 20px;
     cursor: pointer;
-    color: #384959;
+    color: white;
+    pointer-events: auto;
 }
 
 .dropdown-menu {
