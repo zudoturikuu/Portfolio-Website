@@ -151,26 +151,83 @@
 
             <section class="work-experience">
                 <h1>Work Experience</h1>
-                <section class="work-experience-content">
-                    <h3>Singapore Police Force</h3>
-                    <h5>February 2026 - February 2028</h5>
-                    <ul>
-                        <li><p>Awarded <strong>Best Trainee</strong> and <strong>Best in Professional Studies</strong> during the Police Officer Basic Course</p></li>
-                        <li><p>Posted to the <strong>Protective Security Command</strong> as a ProCom Trooper, and the <strong>85th batch of Officer Cadet Trainees</strong></p></li>
-                    </ul>
-                    <h3>Singapore Land Authority</h3>
-                    <h5>December 2025</h5>
-                    <ul>
-                        <li>Collaborated with team members to develop an ARCGIS Story Map for use in Upper Secondary Geography Lessons in MOE Schools</li>
-                        <li>Learnt and had Hands On experience with surveying equipment, software and techniques, including QGIS and LiDAR scanners</li>
-                    </ul>
-                    <h3>Shake Shack Singapore</h3>
-                    <h5>December 2023 - January 2024</h5>
-                    <ul>
-                        <li>Gained experience in customer management and relations</li>
-                        <li>Worked in a dynamic, fast paced environment under pressure to deliver products to consumers</li>
-                    </ul>
-                </section>
+                <ol class="experience-list">
+                    <li class="experience">
+                        <div class="experience-header">
+                            <div class="experience-logo" aria-hidden="true">SPF</div>
+                            <div class="experience-heading">
+                                <h3>Singapore Police Force</h3>
+                                <p class="experience-dates">
+                                    <time datetime="2026-02">Feb 2026</time> – <span data-present>Present</span><span class="experience-duration"></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <ol class="roles">
+                            <li class="role">
+                                <h4>Officer Cadet Trainee</h4>
+                                <p class="experience-dates">
+                                    <time datetime="2026-11">Nov 2026</time> – <span data-present>Present</span><span class="experience-duration"></span>
+                                </p>
+                                <ul class="experience-points">
+                                    <li>Part of the <strong>85th batch of Officer Cadet Trainees</strong></li>
+                                </ul>
+                            </li>
+
+                            <li class="role">
+                                <h4>ProCom Officer</h4>
+                                <p class="experience-dates">
+                                    <time datetime="2026-07">Jul 2026</time> – <time datetime="2026-11">Nov 2026</time><span class="experience-duration"></span>
+                                </p>
+                                <ul class="experience-points">
+                                    <li>Posted to the <strong>Protective Security Command</strong> (ProCom)</li>
+                                </ul>
+                            </li>
+
+                            <li class="role">
+                                <h4>Trainee</h4>
+                                <p class="experience-dates">
+                                    <time datetime="2026-02">Feb 2026</time> – <time datetime="2026-07">Jul 2026</time><span class="experience-duration"></span>
+                                </p>
+                                <ul class="experience-points">
+                                    <li>Awarded <strong>Best Trainee</strong> and <strong>Best in Professional Studies</strong> during the Police Officer Basic Course</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li class="experience">
+                        <div class="experience-header">
+                            <div class="experience-logo" aria-hidden="true">SLA</div>
+                            <div class="experience-heading">
+                                <h3>Singapore Land Authority</h3>
+                                <p class="experience-dates">
+                                    <time datetime="2025-12">Dec 2025</time><span class="experience-duration"></span>
+                                </p>
+                            </div>
+                        </div>
+                        <ul class="experience-points">
+                            <li>Collaborated with team members to develop an ARCGIS Story Map for use in Upper Secondary Geography Lessons in MOE Schools</li>
+                            <li>Learnt and had Hands On experience with surveying equipment, software and techniques, including QGIS and LiDAR scanners</li>
+                        </ul>
+                    </li>
+
+                    <li class="experience">
+                        <div class="experience-header">
+                            <div class="experience-logo" aria-hidden="true">SS</div>
+                            <div class="experience-heading">
+                                <h3>Shake Shack Singapore</h3>
+                                <p class="experience-dates">
+                                    <time datetime="2023-12">Dec 2023</time> – <time datetime="2024-01">Jan 2024</time><span class="experience-duration"></span>
+                                </p>
+                            </div>
+                        </div>
+                        <ul class="experience-points">
+                            <li>Gained experience in customer management and relations</li>
+                            <li>Worked in a dynamic, fast paced environment under pressure to deliver products to consumers</li>
+                        </ul>
+                    </li>
+                </ol>
             </section>
 
             <hr/ id="projects">
@@ -295,6 +352,38 @@
             });
             document.addEventListener("click", (e) => {
                 if (!dropdown.contains(e.target)) setMenu(false);
+            });
+
+            // Work experience: add "· 10 mos" style durations and mark what's current
+            function formatDuration(totalMonths) {
+                const years = Math.floor(totalMonths / 12);
+                const months = totalMonths % 12;
+                const parts = [];
+                if (years) parts.push(`${years} yr${years > 1 ? "s" : ""}`);
+                if (months) parts.push(`${months} mo${months > 1 ? "s" : ""}`);
+                return parts.join(" ");
+            }
+
+            function toMonthNumber(time) {
+                const [year, month] = time.dateTime.split("-").map(Number);
+                return year * 12 + month;
+            }
+
+            const now = new Date();
+            const thisMonth = now.getFullYear() * 12 + now.getMonth() + 1;
+
+            document.querySelectorAll(".experience-dates").forEach((dates) => {
+                const times = dates.querySelectorAll("time");
+                const isPresent = dates.querySelector("[data-present]") !== null;
+                const start = toMonthNumber(times[0]);
+                const end = isPresent ? thisMonth : toMonthNumber(times[times.length - 1]);
+
+                // +1 counts both the first and the last month, the same way LinkedIn does
+                dates.querySelector(".experience-duration").textContent = formatDuration(end - start + 1);
+
+                if (isPresent || end > thisMonth) {
+                    dates.closest(".role, .experience").classList.add("current");
+                }
             });
         </script>
 
