@@ -203,55 +203,14 @@ hr {
     text-decoration: none;
 }
 
-.extracurriculars h5,
 .awards-and-honors h5 {
     font-weight: 200;
     font-style: italic;
     padding: 5px 0px 10px 0px;
 }
 
-/* As many columns (min 240px) as fit, stretched to fill the row */
-.extracurricular-content ul,
-.projects-content ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
-    gap: 20px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-.extracurricular-content li,
-.projects-content li {
-    display: flex;
-    flex-direction: row;
-    border: 1px solid rgba(134, 134, 172, 0.5);
-    flex-wrap: wrap;
-    min-height: 120px;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    text-align: center;
-    border-radius: 20px;
-    background-color: #6A89A7;
-    padding: 10px 20px 10px 30px;
-    box-shadow: 
-        0 0 10px rgba(134, 134, 172, 0.3),   
-        0 0 30px rgba(134, 134, 172, 0.2), 
-        0 0 60px rgba(80, 80, 129, 0.15),    
-        0 10px 40px rgba(0, 0, 0, 0.4);
-}
-
-/* Square cards once there's room for more than one per row */
-@media (min-width: 600px) {
-    .extracurricular-content li,
-    .projects-content li {
-        aspect-ratio: 1;
-        min-height: auto;   /* lets a card grow taller if its text needs it */
-    }
-}
-
-/* ---------- Work experience & education: one card per organisation, roles timeline inside ---------- */
+/* ---------- Experience-style cards (Education, Extracurriculars, Work Experience, Projects):
+              one card per organisation, roles timeline inside ---------- */
 .experience-list {
     display: grid;
     gap: 20px;
@@ -415,10 +374,6 @@ hr {
         --gap: 14px;
         padding: 20px 16px;
     }
-}
-
-.projects-content a {
-    color: #BDDDFC;
 }
 
 .award-with-badge {
