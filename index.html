@@ -82,28 +82,65 @@
 
             <section class="education">
                 <h1>Education</h1>
-                <section class="education-content">
-                    <h3>Nanyang Technological University - Renaissance Engineering Programme</h3>
-                    <h5>2028 - 2032</h5>
-                    <ul>
-                        <li>Bachelor of Engineering Science (Chemical and Biomolecular Engineering)</li>
-                        <li>Master of Science in Technology Management</li>
-                    </ul>
-                    <h3>Hwa Chong Institution - A Levels</h3>
-                    <h5>February 2024 - November 2025</h5>
-                    <ul>
-                        <li>Subjects Taken: Physics, Chemistry, Mathematics, Economics, General Paper, Project Work, Mother Tongue (Chinese)</li>
-                        <li>2025 A-Level Examination Grades: AAAA/A</li>
-                        <li><p>Attained <a class="hc-diploma" href="https://verify.knowledgecatalyst.io/CertificateDetail/737b340d-1ec4-4dc6-a607-c5e2823441c6" target="_blank">Hwa Chong Diploma with Merit</a></p></li>
-                    </ul>
+                <ol class="experience-list">
+                    <li class="experience">
+                        <div class="experience-header">
+                            <div class="experience-logo" aria-hidden="true">
+                                <img src="images/logos/ntu.png" alt="" loading="lazy">
+                            </div>
+                            <div class="experience-heading">
+                                <h3>Nanyang Technological University</h3>
+                                <p class="experience-subtitle">Renaissance Engineering Programme</p>
+                                <p class="experience-dates">
+                                    <time datetime="2028">2028</time> – <time datetime="2032">2032</time>
+                                </p>
+                            </div>
+                        </div>
+                        <ul class="experience-points">
+                            <li>Bachelor of Engineering Science (Chemical and Biomolecular Engineering)</li>
+                            <li>Master of Science in Technology Management</li>
+                        </ul>
+                    </li>
 
-                    <h3>Pei Hwa Secondary School - O Levels</h3>
-                    <h5>January 2020 - November 2023</h5>
-                    <ul>
-                        <li>Subjects Taken: English Language, Mother Tongue Language (Chinese), Mathematics, Additional Mathematics, Physics, Chemistry, Humanities (Social Studies, Geography)</li>
-                        <li>2023 O Level Net L1R5: 4</li>
-                    </ul>
-                </section>
+                    <li class="experience">
+                        <div class="experience-header">
+                            <div class="experience-logo" aria-hidden="true">
+                                <img src="images/logos/hci.png" alt="" loading="lazy">
+                            </div>
+                            <div class="experience-heading">
+                                <h3>Hwa Chong Institution</h3>
+                                <p class="experience-subtitle">A Levels</p>
+                                <p class="experience-dates">
+                                    <time datetime="2024-02">Feb 2024</time> – <time datetime="2025-11">Nov 2025</time>
+                                </p>
+                            </div>
+                        </div>
+                        <ul class="experience-points">
+                            <li>Subjects Taken: Physics, Chemistry, Mathematics, Economics, General Paper, Project Work, Mother Tongue (Chinese)</li>
+                            <li>2025 A-Level Examination Grades: AAAA/A</li>
+                            <li>Attained <a class="hc-diploma" href="https://verify.knowledgecatalyst.io/CertificateDetail/737b340d-1ec4-4dc6-a607-c5e2823441c6" target="_blank">Hwa Chong Diploma with Merit</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="experience">
+                        <div class="experience-header">
+                            <div class="experience-logo" aria-hidden="true">
+                                <img src="images/logos/pei-hwa.png" alt="" loading="lazy">
+                            </div>
+                            <div class="experience-heading">
+                                <h3>Pei Hwa Secondary School</h3>
+                                <p class="experience-subtitle">O Levels</p>
+                                <p class="experience-dates">
+                                    <time datetime="2020-01">Jan 2020</time> – <time datetime="2023-11">Nov 2023</time>
+                                </p>
+                            </div>
+                        </div>
+                        <ul class="experience-points">
+                            <li>Subjects Taken: English Language, Mother Tongue Language (Chinese), Mathematics, Additional Mathematics, Physics, Chemistry, Humanities (Social Studies, Geography)</li>
+                            <li>2023 O Level Net L1R5: 4</li>
+                        </ul>
+                    </li>
+                </ol>
             </section>
 
             <hr/ id="extracurriculars">
@@ -360,7 +397,7 @@
                 if (!dropdown.contains(e.target)) setMenu(false);
             });
 
-            // Work experience: add "· 10 mos" style durations and mark what's current
+            // Work experience and education: add "· 10 mos" style durations and mark what's current
             function formatDuration(totalMonths) {
                 const years = Math.floor(totalMonths / 12);
                 const months = totalMonths % 12;
@@ -370,8 +407,10 @@
                 return parts.join(" ");
             }
 
-            function toMonthNumber(time) {
-                const [year, month] = time.dateTime.split("-").map(Number);
+            // "2026-07" → one month number. A year on its own ("2028") counts from
+            // January when it's a start date and to December when it's an end date.
+            function toMonthNumber(time, monthIfMissing) {
+                const [year, month = monthIfMissing] = time.dateTime.split("-").map(Number);
                 return year * 12 + month;
             }
 
@@ -381,13 +420,18 @@
             document.querySelectorAll(".experience-dates").forEach((dates) => {
                 const times = dates.querySelectorAll("time");
                 const isPresent = dates.querySelector("[data-present]") !== null;
-                const start = toMonthNumber(times[0]);
-                const end = isPresent ? thisMonth : toMonthNumber(times[times.length - 1]);
+                const start = toMonthNumber(times[0], 1);
+                const end = isPresent ? thisMonth : toMonthNumber(times[times.length - 1], 12);
 
-                // +1 counts both the first and the last month, the same way LinkedIn does
-                dates.querySelector(".experience-duration").textContent = formatDuration(end - start + 1);
+                // Only fill a duration where there's a slot for one (Education doesn't show them)
+                const duration = dates.querySelector(".experience-duration");
+                if (duration) {
+                    // +1 counts both the first and the last month, the same way LinkedIn does
+                    duration.textContent = formatDuration(end - start + 1);
+                }
 
-                if (isPresent || end > thisMonth) {
+                // Current = already started, and either "Present" or not finished yet
+                if (start <= thisMonth && (isPresent || end > thisMonth)) {
                     dates.closest(".role, .experience").classList.add("current");
                 }
             });

@@ -203,7 +203,6 @@ hr {
     text-decoration: none;
 }
 
-.education h5,
 .extracurriculars h5,
 .awards-and-honors h5 {
     font-weight: 200;
@@ -212,7 +211,6 @@ hr {
 }
 
 /* As many columns (min 240px) as fit, stretched to fill the row */
-.education-content ul,
 .extracurricular-content ul,
 .projects-content ul {
     display: grid;
@@ -222,7 +220,6 @@ hr {
     margin-bottom: 20px;
 }
 
-.education-content li,
 .extracurricular-content li,
 .projects-content li {
     display: flex;
@@ -247,7 +244,6 @@ hr {
 
 /* Square cards once there's room for more than one per row */
 @media (min-width: 600px) {
-    .education-content li,
     .extracurricular-content li,
     .projects-content li {
         aspect-ratio: 1;
@@ -255,7 +251,7 @@ hr {
     }
 }
 
-/* ---------- Work experience: one card per company, roles timeline inside ---------- */
+/* ---------- Work experience & education: one card per organisation, roles timeline inside ---------- */
 .experience-list {
     display: grid;
     gap: 20px;
@@ -318,6 +314,12 @@ hr {
     line-height: 1.3;
 }
 
+/* Programme or qualification under a school's name (Education) */
+.experience-subtitle {
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
 .experience-dates {
     padding-top: 2px;
     font-size: 0.85em;
@@ -345,6 +347,11 @@ hr {
 
 .experience-points li::marker {
     color: #88BDF2;
+}
+
+/* Links inside bullet points, e.g. the Hwa Chong Diploma */
+.experience-points a {
+    color: #BDDDFC;
 }
 
 /* ----- Timeline of roles within one company ----- */
@@ -410,7 +417,6 @@ hr {
     }
 }
 
-.education-content a,
 .projects-content a {
     color: #BDDDFC;
 }
