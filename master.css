@@ -40,19 +40,58 @@ body {
     filter: brightness(70%);
 }
 
-/* Photo and text share one grid cell, so they overlap without absolute positioning */
+/* ---------- Hero: the photo collapses into the "wongjunheng.com" title on scroll ---------- */
 .welcome-page {
     position: relative;
-    display: grid;
 }
 
-.welcome-page > picture,
+/* The extra height is the scroll distance the animation plays over.
+   Only added by the script, so without JavaScript (or with reduced motion) the hero is one screen tall. */
+.welcome-page.is-animated {
+    height: 200vh;
+    height: 200svh;
+}
+
+/* Pinned to the top of the screen until the tall section has scrolled past */
+.hero-sticky {
+    position: sticky;
+    top: 0;
+    display: grid;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+}
+
+/* Photo, title and name share one grid cell, so they overlap without absolute positioning */
+.hero-photo,
+.hero-title,
 .content {
     grid-area: 1 / 1;
 }
 
-.welcome-page > picture {
+.hero-photo {
     display: block;
+    will-change: clip-path, opacity;
+}
+
+.hero-title {
+    place-self: center;
+    position: relative;
+    z-index: 1;
+    padding: 0 20px;
+    font-family: "Russo One", sans-serif;
+    font-size: clamp(1.8rem, 8.5vw, 7rem);
+    line-height: 1.1;
+    white-space: nowrap;
+
+    /* Letters are "windows" onto a background. The script swaps this gradient
+       for the hero photo, lined up exactly with the photo behind it. */
+    background: linear-gradient(to right, #ffffff, #cfcfcf, #8a8a8a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0;   /* faded in by the script as the photo collapses */
 }
 
 hr {
@@ -69,7 +108,7 @@ hr {
 .content {
     display: flex;
     position: relative;   /* keeps the text painted above the filtered photo */
-    z-index: 1;
+    z-index: 2;
     flex-direction: column;
     align-self: end;
     padding-bottom: 40vh;

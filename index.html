@@ -21,26 +21,30 @@
 
     <body>
         <section class="welcome-page">
-            <picture>
-                <source media="(orientation: portrait)"
-                        srcset="images/hero-portrait-800.jpg 800w,
-                                images/hero-portrait-1300.jpg 1300w"
-                        sizes="100vw">
-                <img class="main-photo"
-                     src="images/hero-1920.jpg"
-                     srcset="images/hero-1280.jpg 1280w,
-                             images/hero-1920.jpg 1920w,
-                             images/hero-2880.jpg 2880w"
-                     sizes="100vw"
-                     fetchpriority="high"
-                     alt="An example of my photography work">
-            </picture>
-            <div class="content">
-                <h1>Wong Jun Heng</h1>
-                <p>Welcome to my portfolio!</p>
-                <a href="#dropdown" id="scroll-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
-                </svg></a>
+            <!-- Stays pinned to the screen while the photo collapses into the title -->
+            <div class="hero-sticky">
+                <picture class="hero-photo">
+                    <source media="(orientation: portrait)"
+                            srcset="images/hero-portrait-800.jpg 800w,
+                                    images/hero-portrait-1300.jpg 1300w"
+                            sizes="100vw">
+                    <img class="main-photo"
+                         src="images/hero-1920.jpg"
+                         srcset="images/hero-1280.jpg 1280w,
+                                 images/hero-1920.jpg 1920w,
+                                 images/hero-2880.jpg 2880w"
+                         sizes="100vw"
+                         fetchpriority="high"
+                         alt="An example of my photography work">
+                </picture>
+                <p class="hero-title">wongjunheng.com</p>
+                <div class="content">
+                    <h1>Wong Jun Heng</h1>
+                    <p>Welcome to my portfolio!</p>
+                    <a href="#dropdown" id="scroll-button" aria-label="Scroll down to About Me"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+                    </svg></a>
+                </div>
             </div>
         </section>
 
@@ -439,6 +443,109 @@
                 void mainContent.offsetWidth; // force reflow
                 mainContent.classList.add("animate");
             });
+
+            // Hero: as you scroll, the photo collapses into the "wongjunheng.com" title
+            // (inspired by keppel.com). The section is pinned with CSS position: sticky;
+            // this script only works out how far through the animation you are.
+            const hero = document.querySelector(".welcome-page");
+            const heroSticky = hero.querySelector(".hero-sticky");
+            const heroPhoto = hero.querySelector(".hero-photo");
+            const heroImg = hero.querySelector(".main-photo");
+            const heroTitle = hero.querySelector(".hero-title");
+            const heroContent = hero.querySelector(".content");
+
+            const clamp01 = (value) => Math.min(Math.max(value, 0), 1);
+            const lerp = (from, to, amount) => from + (to - from) * amount;
+            // How far "value" is between "start" and "end", as 0 to 1
+            const progressBetween = (value, start, end) => clamp01((value - start) / (end - start));
+            // Starts slowly, speeds up, then slows down at the end
+            const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+            let titleBox = { top: 0, left: 0, width: 0, height: 0 };
+
+            // Measures where the title's letters sit inside the pinned screen, and lines the
+            // photo up inside the letters so it matches the photo behind them exactly.
+            function measureHero() {
+                const screen = heroSticky.getBoundingClientRect();
+                const letters = document.createRange();
+                letters.selectNodeContents(heroTitle);
+                const box = letters.getBoundingClientRect();
+                titleBox = {
+                    top: box.top - screen.top,
+                    left: box.left - screen.left,
+                    width: box.width,
+                    height: box.height,
+                };
+
+                const imageWidth = heroImg.naturalWidth;
+                const imageHeight = heroImg.naturalHeight;
+                if (imageWidth && imageHeight) {
+                    // Same maths as object-fit: cover — scale until the photo fills the screen, centred
+                    const scale = Math.max(screen.width / imageWidth, screen.height / imageHeight);
+                    const shownWidth = imageWidth * scale;
+                    const shownHeight = imageHeight * scale;
+                    const titleRect = heroTitle.getBoundingClientRect();
+                    // Two layers: a light veil (keeps the letters readable on the dark page), then the photo
+                    heroTitle.style.backgroundImage =
+                        `linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url("${heroImg.currentSrc}")`;
+                    heroTitle.style.backgroundSize = `100% 100%, ${shownWidth}px ${shownHeight}px`;
+                    heroTitle.style.backgroundPosition =
+                        `0 0, ${(screen.width - shownWidth) / 2 - (titleRect.left - screen.left)}px ` +
+                        `${(screen.height - shownHeight) / 2 - (titleRect.top - screen.top)}px`;
+                }
+            }
+
+            function updateHero() {
+                const section = hero.getBoundingClientRect();
+                const scrollDistance = section.height - heroSticky.offsetHeight;
+                const progress = clamp01(-section.top / scrollDistance);
+
+                // 1. The name and arrow fade out and drift up first
+                const fade = progressBetween(progress, 0, 0.25);
+                heroContent.style.opacity = 1 - fade;
+                heroContent.style.transform = `translateY(${-40 * fade}px)`;
+
+                // 2. The visible part of the photo shrinks from the full screen to the title's box
+                const collapse = easeInOut(progressBetween(progress, 0.05, 0.8));
+                const padding = 12;
+                const width = heroSticky.clientWidth;
+                const height = heroSticky.clientHeight;
+                const top = lerp(0, Math.max(titleBox.top - padding, 0), collapse);
+                const left = lerp(0, Math.max(titleBox.left - padding, 0), collapse);
+                const right = lerp(0, Math.max(width - titleBox.left - titleBox.width - padding, 0), collapse);
+                const bottom = lerp(0, Math.max(height - titleBox.top - titleBox.height - padding, 0), collapse);
+                const radius = lerp(0, 18, collapse);
+                heroPhoto.style.clipPath = `inset(${top}px ${right}px ${bottom}px ${left}px round ${radius}px)`;
+
+                // 3. The box of photo fades away as the photo-filled letters fade in
+                heroPhoto.style.opacity = 1 - progressBetween(progress, 0.78, 0.95);
+                heroTitle.style.opacity = progressBetween(progress, 0.7, 0.9);
+            }
+
+            const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (!reduceMotion) {
+                hero.classList.add("is-animated");
+
+                let frameRequested = false;
+                const requestUpdate = () => {
+                    if (frameRequested) return;
+                    frameRequested = true;
+                    requestAnimationFrame(() => {
+                        frameRequested = false;
+                        updateHero();
+                    });
+                };
+                const remeasure = () => {
+                    measureHero();
+                    updateHero();
+                };
+
+                window.addEventListener("scroll", requestUpdate, { passive: true });
+                window.addEventListener("resize", remeasure);
+                heroImg.addEventListener("load", remeasure);   // the photo can change file when the screen rotates
+                document.fonts.ready.then(remeasure);           // the title's width depends on the Russo One font
+                remeasure();
+            }
 
             // Dropdown menu: opens/closes on tap or click so it works on touch screens and keyboards
             const dropdown = document.getElementById("dropdown");
