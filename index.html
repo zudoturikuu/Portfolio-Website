@@ -20,6 +20,9 @@
     </head>
 
     <body>
+        <!-- Pixel animation behind the whole page (drawn by pixel-background.js) -->
+        <canvas class="pixel-background" aria-hidden="true"></canvas>
+
         <section class="welcome-page">
             <!-- Stays pinned to the screen while the photo collapses into the title -->
             <div class="hero-sticky">
@@ -520,10 +523,22 @@
                 // 3. The box of photo fades away as the photo-filled letters fade in
                 heroPhoto.style.opacity = 1 - progressBetween(progress, 0.78, 0.95);
                 heroTitle.style.opacity = progressBetween(progress, 0.7, 0.9);
+
+                // 4. The pixel background (pixel-background.js) fades in around the title, then stays
+                setPixelsVisible(progressBetween(progress, 0.75, 0.95));
+            }
+
+            function setPixelsVisible(amount) {
+                document.documentElement.style.setProperty("--pixels-visible", amount);
             }
 
             const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-            if (!reduceMotion) {
+            if (reduceMotion) {
+                // No hero animation: just show the (still) pixel background once the banner has scrolled away
+                const updatePixels = () => setPixelsVisible(hero.getBoundingClientRect().bottom < window.innerHeight / 2 ? 1 : 0);
+                window.addEventListener("scroll", updatePixels, { passive: true });
+                updatePixels();
+            } else {
                 hero.classList.add("is-animated");
 
                 let frameRequested = false;
@@ -603,6 +618,9 @@
                 }
             });
         </script>
+        <!-- Pixel background animation. A regular script (not type="module") so it also works
+             when index.html is opened straight from the computer. -->
+        <script src="pixel-background.js"></script>
 
     </body>
 </html>
